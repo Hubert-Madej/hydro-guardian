@@ -1,0 +1,27 @@
+<div class="hg-auth-login-container">
+  <form [formGroup]="form" class="hg-auth-login-form">
+    <h2>Hydro Guardian</h2>
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-user"></i>
+      </span>
+      <input pInputText formControlName="username" placeholder="Username" />
+    </div>
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-lock"></i>
+      </span>
+      <input
+        type="password"
+        pInputText
+        formControlName="password"
+        placeholder="Password"
+      />
+    </div>
+    <p-button
+      (click)="submit()"
+      class="p-button-info"
+      label="Sign in"
+    ></p-button>
+  </form>
+</div>

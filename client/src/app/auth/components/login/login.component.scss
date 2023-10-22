@@ -1,0 +1,26 @@
+.hg-auth-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  padding: 16px;
+  border-radius: 8px;
+  width: 40%;
+  background: #f9fafb;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  min-height: 450px;
+}
+
+.hg-auth-login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin: 0 auto;
+  height: 100vh;
+}
