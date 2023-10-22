@@ -1,4 +1,4 @@
-# HydroGuardian
+<img src="https://svgur.com/i/yo3.svg" alt="Hydro Guardian" style="height: 400px; object-fit: fill; width: 100%;"/>
 
 HydroGuardian is an application that enables monitoring and control of water quality using a mini water quality monitoring station. The application allows for remote monitoring of measurement results, data analysis, and station management.
 
@@ -41,9 +41,13 @@ To run the project, use the following command:
    ```bash
    ng serve
    ```
-2. Fot backend module use:
+2. For backend module use:
    ```bash
    npm run start:dev
+   ```
+3. To run local development containers use command:
+   ```bash
+   docker compose -f docker-compose.dev.yml up -d
    ```
 
 ## Configuration
@@ -52,7 +56,7 @@ To configure the HydroGuardian application and connect it to the water quality m
 
 1. Open the configuration file `src/environments/environment.ts` and adjust URL's for your backend module.
 2. Create `.env` file based on .env.example and adjust parameters such as the MQTT server address and InfluxDB database.
-3. Install HydroGuardian Sentry on the target device and configure it according to the project's requirements.
+3. Install HydroGuardian Firmware on the target device and configure it according to the project's requirements.
 
 ## Technologies Used
 
