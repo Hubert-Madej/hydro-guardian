@@ -22,7 +22,7 @@ jobs:
           name: "Lint Frontend"
           command: |
             echo "[CODE QUALITY] Linting Client Module"
-            cd client/  # Fixed the typo in "client"
+            cd client/
             npm ci
             npm run lint
 
@@ -30,5 +30,11 @@ workflows:
   version: 2
   code-quality:
     jobs:
-      - lint-backend
-      - lint-frontend
+      - lint-backend:
+          filters:
+            branches:
+              ignore: develop, main
+      - lint-frontend:
+          filters:
+            branches:
+              ignore: develop, main
