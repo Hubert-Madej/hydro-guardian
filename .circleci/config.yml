@@ -11,7 +11,19 @@ jobs:
           command: |
             echo "[CODE QUALITY] Linting Backend Module"
             cd backend/
-            npm ci # Use `npm ci` for more consistent dependency installation
+            npm ci
+            npm run lint
+    lint-backend:
+    docker:
+      - image: node:18
+    steps:
+      - checkout
+      - run:
+          name: "Lint Frontend"
+          command: |
+            echo "[CODE QUALITY] Linting Client Module"
+            cd cleint/
+            npm ci
             npm run lint
 
 workflows:
