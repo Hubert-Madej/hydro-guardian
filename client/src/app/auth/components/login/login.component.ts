@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { LoginFormPayload } from '../../models/login-form-payload.interface'
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginFormPayload } from '../../interfaces/login-form-payload.interface';
 
 @Component({
   selector: 'app-login',
@@ -8,29 +8,29 @@ import { LoginFormPayload } from '../../models/login-form-payload.interface'
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  @Output() onSignIn = new EventEmitter<LoginFormPayload>()
+  @Output() onSignIn = new EventEmitter<LoginFormPayload>();
 
   form: FormGroup<{
-    username: FormControl<string | null>
-    password: FormControl<string | null>
-  }>
+    username: FormControl<string | null>;
+    password: FormControl<string | null>;
+  }>;
 
   ngOnInit(): void {
-    this.createForm()
+    this.createForm();
   }
 
   createForm(): void {
     this.form = new FormGroup({
       username: new FormControl<string | null>(null, Validators.required),
       password: new FormControl<string | null>(null, Validators.required),
-    })
+    });
   }
 
   submit(): void {
     if (this.form.valid) {
-      this.onSignIn.emit(this.form.getRawValue() as LoginFormPayload)
+      this.onSignIn.emit(this.form.getRawValue() as LoginFormPayload);
     } else {
-      this.form.markAllAsTouched()
+      this.form.markAllAsTouched();
     }
   }
 }
