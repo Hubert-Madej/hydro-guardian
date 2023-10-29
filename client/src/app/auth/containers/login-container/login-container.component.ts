@@ -10,7 +10,7 @@ import { AuthFacade } from '../../services/auth.facade'
 export class LoginContainerComponent {
   constructor(private readonly authFacade: AuthFacade) {}
 
-  signIn(loginFormPayload: LoginFormPayload): void {
+  onSignIn(loginFormPayload: LoginFormPayload): void {
     this.authFacade.signIn(loginFormPayload)
   }
 }

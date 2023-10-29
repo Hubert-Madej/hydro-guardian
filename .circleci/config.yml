@@ -1,0 +1,34 @@
+version: 2.1
+
+jobs:
+  lint-backend:
+    docker:
+      - image: node:18
+    steps:
+      - checkout
+      - run:
+          name: "Lint Backend"
+          command: |
+            echo "[CODE QUALITY] Linting Backend Module"
+            cd backend/
+            npm ci
+            npm run lint
+  lint-frontend:
+    docker:
+      - image: node:18
+    steps:
+      - checkout
+      - run:
+          name: "Lint Frontend"
+          command: |
+            echo "[CODE QUALITY] Linting Client Module"
+            cd client/  # Fixed the typo in "client"
+            npm ci
+            npm run lint
+
+workflows:
+  version: 2
+  code-quality:
+    jobs:
+      - lint-backend
+      - lint-frontend
