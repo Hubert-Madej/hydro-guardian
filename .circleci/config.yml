@@ -3,18 +3,19 @@ version: 2.1
 jobs:
   lint-backend:
     docker:
-      - image: cimg/base:stable
+      - image: node:18
     steps:
       - checkout
       - run:
-            name: "Lint Backend"
-            command: |
-              echo "[CODE QUALITY] Linting Backend Module"
-              cd backend/
-              npm i
-              npm run lint
+          name: "Lint Backend"
+          command: |
+            echo "[CODE QUALITY] Linting Backend Module"
+            cd backend/
+            npm ci # Use `npm ci` for more consistent dependency installation
+            npm run lint
 
 workflows:
+  version: 2
   code-quality:
     jobs:
       - lint-backend
