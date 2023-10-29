@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
 import { CoreFacade } from './core/services/core.facade';
+import { AuthFacade } from './auth/services/auth.facade';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +9,12 @@ import { CoreFacade } from './core/services/core.facade';
 })
 export class AppComponent implements OnInit {
   title = 'Hydro Guardian';
+  authUser$ = this.authFacade.selectAuthUser$();
 
-  constructor(private coreFacade: CoreFacade) {}
+  constructor(
+    private coreFacade: CoreFacade,
+    private readonly authFacade: AuthFacade,
+  ) {}
 
   ngOnInit() {
     this.coreFacade.startLoadingSpinner();

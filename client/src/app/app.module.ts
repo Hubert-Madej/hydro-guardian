@@ -13,6 +13,8 @@ import { SpinnerInterceptor } from './core/interceptors/spinner.interceptor';
 import { UnauthorizedInterceptor } from './core/interceptors/unauthorized.interceptor';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +27,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CoreModule,
     AuthModule,
     NgxSpinnerModule,
+    BrowserAnimationsModule,
+    ProgressSpinnerModule,
   ],
   providers: [
     {

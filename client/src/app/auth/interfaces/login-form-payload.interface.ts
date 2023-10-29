@@ -1,4 +1,4 @@
 export interface LoginFormPayload {
-  username: string;
+  email: string;
   password: string;
 }

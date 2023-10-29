@@ -9,6 +9,7 @@ import { SignInResponse } from '../interfaces/sign-in-response.interface';
 import { Router } from '@angular/router';
 import { catchError, finalize, first, Observable, of } from 'rxjs';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { AuthUser } from '../models/auth-user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,10 @@ export class AuthFacade {
     private cookieService: CookieService,
     private router: Router,
   ) {}
+
+  selectAuthUser$(): Observable<AuthUser> {
+    return this.authState.selectAuthUser$();
+  }
 
   signIn(loginFormPayload: LoginFormPayload): void {
     this.authApi

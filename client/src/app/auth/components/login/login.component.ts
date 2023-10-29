@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
   @Output() onSignIn = new EventEmitter<LoginFormPayload>();
 
   form: FormGroup<{
-    username: FormControl<string | null>;
+    email: FormControl<string | null>;
     password: FormControl<string | null>;
   }>;
 
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   createForm(): void {
     this.form = new FormGroup({
-      username: new FormControl<string | null>(null, Validators.required),
+      email: new FormControl<string | null>(null, Validators.required),
       password: new FormControl<string | null>(null, Validators.required),
     });
   }

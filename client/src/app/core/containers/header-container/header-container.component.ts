@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthFacade } from '../../../auth/services/auth.facade';
 
 @Component({
   selector: 'app-header-container',
   templateUrl: './header-container.component.html',
   styleUrls: ['./header-container.component.scss'],
 })
-export class HeaderContainerComponent implements OnInit {
-  constructor() {}
+export class HeaderContainerComponent {
+  constructor(private authFacade: AuthFacade) {}
 
-  ngOnInit(): void {}
+  signOut(): void {
+    this.authFacade.signOut();
+  }
 }
