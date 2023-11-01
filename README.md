@@ -1,6 +1,14 @@
-<img src="https://svgur.com/i/yo3.svg" alt="Hydro Guardian" style="height: 400px; object-fit: fill; width: 100%;"/>
+<img src="https://svgur.com/i/yo3.svg" alt="Hydro Guardian" style="height: 400px; object-fit: fill; width: 100%;" />
+
+<p align="center">
+  <a href="https://hubert-madej.github.io/hydro-guardian/backend/">
+    <img src="http://jessemillar.github.io/view-in-swagger-button/button.svg" alt="View in Swagger">
+  </a>
+</p>
 
 HydroGuardian is an application that enables monitoring and control of water quality using a mini water quality monitoring station. The application allows for remote monitoring of measurement results, data analysis, and station management.
+
+
 
 ## Requirements
 
