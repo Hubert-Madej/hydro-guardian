@@ -1,3 +1,5 @@
+import { ApiResponseOptions } from '@nestjs/swagger';
+
 export const AuthResponsesDescriptions = {
   signUp: {
     success: {
@@ -18,7 +20,7 @@ export const AuthResponsesDescriptions = {
       status: '4XX',
       description:
         'An error occurred while the user was logged in by AWS Cognito.',
-    },
+    } as ApiResponseOptions,
   },
   signIn: {
     success: {
@@ -29,7 +31,7 @@ export const AuthResponsesDescriptions = {
       status: '4XX',
       description:
         'An error occurred while the user was logged in by AWS Cognito.',
-    },
+    } as ApiResponseOptions,
   },
   createInvitation: {
     success: {

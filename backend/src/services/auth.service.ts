@@ -21,7 +21,6 @@ import { CreateInvitationDto } from '../models/dto/create-invitation.dto';
 import { RedisKeys } from '../models/enums/redis-keys.enum';
 import { RedisTTL } from '../models/constants/redis-ttl';
 import { ExceptionMessages } from '../models/enums/exception-messages.enum';
-import { NotFoundError } from 'rxjs';
 
 @Injectable()
 export class AuthService {

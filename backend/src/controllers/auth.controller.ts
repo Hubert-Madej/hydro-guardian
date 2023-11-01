@@ -42,7 +42,6 @@ export class AuthController {
   @ApiResponse(AuthResponsesDescriptions.signUp.success)
   @ApiResponse(AuthResponsesDescriptions.signUp.invalidInvitationCode)
   @ApiResponse(AuthResponsesDescriptions.signUp.invitationDoesNotExists)
-  //@ts-ignore
   @ApiResponse(AuthResponsesDescriptions.signUp.cognitoAuthError)
   @ApiBody({ type: SignUpDto })
   async signUp(@Body() signUpDto: SignUpDto): Promise<void> {
@@ -57,7 +56,6 @@ export class AuthController {
   @Post('sign-in')
   @ApiOperation({ summary: 'Allows the user to sign-in in the system.' })
   @ApiResponse(AuthResponsesDescriptions.signIn.success)
-  //@ts-ignore
   @ApiResponse(AuthResponsesDescriptions.signIn.cognitoAuthError)
   @ApiOkResponse({ type: SignInExampleResponse })
   @ApiBody({ type: SingItDto })
