@@ -4,12 +4,12 @@ import { jwtDecode, JwtPayload } from 'jwt-decode';
 import * as dayjs from 'dayjs';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthState } from '../state/auth.state';
-import { SignInResponse } from '../interfaces/sign-in-response.interface';
 import { Router } from '@angular/router';
 import { catchError, finalize, first, Observable, of } from 'rxjs';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { AuthUser } from '../models/auth-user.model';
-import { LoginFormPayload } from '../models/login-form-payload.interface';
+import { LoginFormPayload } from '../models/interfaces/login-form-payload.interface';
+import { SignInResponse } from '../models/interfaces/sign-in-response.interface';
 
 @Injectable({
   providedIn: 'root',

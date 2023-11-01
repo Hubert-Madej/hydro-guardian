@@ -58,6 +58,19 @@ To configure the HydroGuardian application and connect it to the water quality m
 2. Create `.env` file based on .env.example and adjust parameters such as the MQTT server address and InfluxDB database.
 3. Install HydroGuardian Firmware on the target device and configure it according to the project's requirements.
 
+## Code development requirements
+#### Backend
+
+- You should avoid using 'any'. Every property, argument etc. should have a valid type.
+- Use try / catch mechanism for external HTTP requests and asynchronous communication.
+- Before every commit run: 
+   - `npm run lint`
+   - `npm run format`
+- Every new functionality that provides:
+  - Endpoint,
+  - Dto, Should be documented with Swagger Properties (Example in Auth Module).
+- (NOT READY) Every new functionality that provides new logic should have unit test.
+
 ## Technologies Used
 
 - Angular

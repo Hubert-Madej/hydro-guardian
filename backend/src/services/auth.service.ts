@@ -1,4 +1,9 @@
-import { Inject, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { SingItDto } from '../models/dto/sing-it.dto';
 import { ConfigService } from '@nestjs/config';
 import {
@@ -15,6 +20,8 @@ import * as crypto from 'crypto';
 import { CreateInvitationDto } from '../models/dto/create-invitation.dto';
 import { RedisKeys } from '../models/enums/redis-keys.enum';
 import { RedisTTL } from '../models/constants/redis-ttl';
+import { ExceptionMessages } from '../models/enums/exception-messages.enum';
+import { NotFoundError } from 'rxjs';
 
 @Injectable()
 export class AuthService {
@@ -29,8 +36,20 @@ export class AuthService {
     });
   }
 
-  async signUp(signUpDto: SignUpDto) {
-    return new Promise<CognitoUser>((resolve, reject) => {
+  async signUp(signUpDto: SignUpDto): Promise<void> {
+    const userVerificationCode = await this.cacheService.get(
+      `${RedisKeys.VERIFICATION_CODE}_${signUpDto.email}`,
+    );
+
+    if (!userVerificationCode) {
+      throw new NotFoundException(ExceptionMessages.INVITATION_NOT_FOUND);
+    }
+
+    if (signUpDto.invitationCode !== userVerificationCode) {
+      throw new BadRequestException(ExceptionMessages.INVALID_INVITATION_CODE);
+    }
+
+    return new Promise<void>((resolve, reject) => {
       return this.cognitoUserPool.signUp(
         signUpDto.email,
         signUpDto.password,
@@ -57,7 +76,7 @@ export class AuthService {
           if (!result) {
             reject(err);
           } else {
-            resolve(result.user);
+            resolve();
           }
         },
       );
