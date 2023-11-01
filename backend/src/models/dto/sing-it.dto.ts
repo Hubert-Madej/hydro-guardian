@@ -1,8 +1,8 @@
-import { IsString } from 'class-validator';
+import { IsEmail, IsString } from 'class-validator';
 import { ValidationMessages } from '../enums/validation-messages.enum';
 
 export class SingItDto {
-  @IsString({ message: ValidationMessages.MUST_BE_STRING })
+  @IsEmail({}, { message: ValidationMessages.MUST_BE_EMAIL })
   email: string;
 
   @IsString({ message: ValidationMessages.MUST_BE_STRING })

@@ -12,6 +12,9 @@ import { CognitoUser } from 'amazon-cognito-identity-js';
 import { Public } from '../decorators/public.decorator';
 import { User } from '../decorators/user.decorator';
 import { AuthUser } from '../models/interfaces/auth-user.interface';
+import { Roles } from '../decorators/role.decorator';
+import { UserRoles } from '../models/enums/user-roles.enum';
+import { CreateInvitationDto } from '../models/dto/create-invitation.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -40,5 +43,13 @@ export class AuthController {
   @Get('current-user')
   async currentUser(@User() user: AuthUser): Promise<AuthUser> {
     return user;
+  }
+
+  @Post('create-invitation')
+  @Roles([UserRoles.ADMIN])
+  async createInvitation(
+    @Body() createInvitationDto: CreateInvitationDto,
+  ): Promise<void> {
+    return this.authService.createInvitation(createInvitationDto);
   }
 }
