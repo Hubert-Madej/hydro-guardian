@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { SignInResponse } from '../interfaces/sign-in-response.interface';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { LoginFormPayload } from '../interfaces/login-form-payload.interface';
 import { AuthUser } from '../models/auth-user.model';
+import { LoginFormPayload } from '../models/login-form-payload.interface';
 
 @Injectable({
   providedIn: 'root',

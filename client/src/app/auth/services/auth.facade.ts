@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AuthApi } from './auth.api';
-import { LoginFormPayload } from '../interfaces/login-form-payload.interface';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 import * as dayjs from 'dayjs';
 import { CookieService } from 'ngx-cookie-service';
@@ -10,6 +9,7 @@ import { Router } from '@angular/router';
 import { catchError, finalize, first, Observable, of } from 'rxjs';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { AuthUser } from '../models/auth-user.model';
+import { LoginFormPayload } from '../models/login-form-payload.interface';
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import gitInfo from '../../../../git-version.json';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,10 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Output() onSignOut = new EventEmitter<void>();
+  @Output() signOut = new EventEmitter<void>();
 
   items: MenuItem[] | undefined;
+  gitInfo = gitInfo;
 
   constructor() {}
 
@@ -28,7 +30,7 @@ export class HeaderComponent implements OnInit {
       {
         label: 'Quit',
         icon: 'pi pi-fw pi-power-off',
-        command: () => this.onSignOut.emit(),
+        command: () => this.signOut.emit(),
       },
     ];
   }

@@ -9,7 +9,7 @@ import { AuthFacade } from '../../../auth/services/auth.facade';
 export class HeaderContainerComponent {
   constructor(private authFacade: AuthFacade) {}
 
-  signOut(): void {
+  onSignOut(): void {
     this.authFacade.signOut();
   }
 }

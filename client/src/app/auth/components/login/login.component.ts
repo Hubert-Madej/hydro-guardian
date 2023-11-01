@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginFormPayload } from '../../interfaces/login-form-payload.interface';
+import { LoginFormPayload } from '../../models/login-form-payload.interface';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +8,7 @@ import { LoginFormPayload } from '../../interfaces/login-form-payload.interface'
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  @Output() onSignIn = new EventEmitter<LoginFormPayload>();
+  @Output() signIn = new EventEmitter<LoginFormPayload>();
 
   form: FormGroup<{
     email: FormControl<string | null>;
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   submit(): void {
     if (this.form.valid) {
-      this.onSignIn.emit(this.form.getRawValue() as LoginFormPayload);
+      this.signIn.emit(this.form.getRawValue() as LoginFormPayload);
     } else {
       this.form.markAllAsTouched();
     }
