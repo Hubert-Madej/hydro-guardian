@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  redis:
+    container_name: hydro-guardian-redis
+    image: redis
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis:/data
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
+
+volumes:
+  redis:
+    driver: local

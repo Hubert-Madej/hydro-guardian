@@ -1,11 +1,11 @@
-import { IsString, Matches, MinLength } from 'class-validator';
+import { IsEmail, IsString, Matches, MinLength } from 'class-validator';
 import { ValidationMessages } from '../enums/validation-messages.enum';
 
 export class SignUpDto {
   @IsString({ message: ValidationMessages.MUST_BE_STRING })
   username: string;
 
-  @IsString({ message: ValidationMessages.MUST_BE_STRING })
+  @IsEmail({}, { message: ValidationMessages.MUST_BE_EMAIL })
   email: string;
 
   @IsString({ message: ValidationMessages.MUST_BE_STRING })

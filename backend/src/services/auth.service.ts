@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { SingItDto } from '../models/dto/sing-it.dto';
 import { ConfigService } from '@nestjs/config';
 import {
@@ -9,11 +9,20 @@ import {
 } from 'amazon-cognito-identity-js';
 import { SignUpDto } from '../models/dto/sign-up.dto';
 import { UserRoles } from '../models/enums/user-roles.enum';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cache } from 'cache-manager';
+import * as crypto from 'crypto';
+import { CreateInvitationDto } from '../models/dto/create-invitation.dto';
+import { RedisKeys } from '../models/enums/redis-keys.enum';
+import { RedisTTL } from '../models/constants/redis-ttl';
 
 @Injectable()
 export class AuthService {
   private readonly cognitoUserPool: CognitoUserPool;
-  constructor(private readonly configService: ConfigService) {
+  constructor(
+    private readonly configService: ConfigService,
+    @Inject(CACHE_MANAGER) private cacheService: Cache,
+  ) {
     this.cognitoUserPool = new CognitoUserPool({
       UserPoolId: this.configService.get<string>('AWS_COGNITO_USER_POOL_ID'),
       ClientId: this.configService.get<string>('AWS_COGNITO_CLIENT_ID'),
@@ -78,5 +87,18 @@ export class AuthService {
         },
       });
     });
+  }
+
+  async createInvitation(
+    createInvitationDto: CreateInvitationDto,
+  ): Promise<void> {
+    const verificationCode = crypto.randomBytes(6).toString('base64');
+    await this.cacheService.set(
+      `${RedisKeys.VERIFICATION_CODE}_${createInvitationDto.email}`,
+      verificationCode,
+      RedisTTL[RedisKeys.VERIFICATION_CODE],
+    );
+
+    // @TODO SEND INVITATION CODE TO THE PROVIDED MAIL VIA SENDGRID
   }
 }
