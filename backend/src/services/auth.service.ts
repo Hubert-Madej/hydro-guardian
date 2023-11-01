@@ -1,4 +1,4 @@
-import { BadRequestException, Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { SingItDto } from '../models/dto/sing-it.dto';
 import { ConfigService } from '@nestjs/config';
 import {
