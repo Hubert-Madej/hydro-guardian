@@ -1,0 +1,12 @@
+.spinner-wrapper {
+  margin-top: -250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-logo-image {
+  filter: invert(100);
+  object-fit: cover;
+}

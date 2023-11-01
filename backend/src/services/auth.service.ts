@@ -15,7 +15,7 @@ export class AuthService {
   private readonly cognitoUserPool: CognitoUserPool;
   constructor(private readonly configService: ConfigService) {
     this.cognitoUserPool = new CognitoUserPool({
-      UserPoolId: this.configService.get<string>('AWS_COGNITO_POOL_ID'),
+      UserPoolId: this.configService.get<string>('AWS_COGNITO_USER_POOL_ID'),
       ClientId: this.configService.get<string>('AWS_COGNITO_CLIENT_ID'),
     });
   }
@@ -26,7 +26,10 @@ export class AuthService {
         signUpDto.email,
         signUpDto.password,
         [
-          new CognitoUserAttribute({ Name: 'email', Value: signUpDto.email }),
+          new CognitoUserAttribute({
+            Name: 'email',
+            Value: signUpDto.email,
+          }),
           new CognitoUserAttribute({
             Name: 'given_name',
             Value: signUpDto.firstName,
@@ -67,7 +70,7 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       return newUser.authenticateUser(authenticationDetails, {
         onSuccess: (result) => {
-          const jwtToken = result.getAccessToken().getJwtToken();
+          const jwtToken = result.getIdToken().getJwtToken();
           resolve({ jwtToken });
         },
         onFailure: (err) => {
