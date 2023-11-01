@@ -1,4 +1,6 @@
-<img src="https://svgur.com/i/yo3.svg" alt="Hydro Guardian" style="height: 400px; object-fit: fill; width: 100%;" />
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Hubert-Madej/hydro-guardian/develop/small-logo.png" alt="Hydro Guardian" />
+</p>
 
 <p align="center">
   <a href="https://hubert-madej.github.io/hydro-guardian/backend/">
