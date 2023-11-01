@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SignInResponse } from '../interfaces/sign-in-response.interface';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { AuthUser } from '../models/auth-user.model';
-import { LoginFormPayload } from '../models/login-form-payload.interface';
+import { LoginFormPayload } from '../models/interfaces/login-form-payload.interface';
+import { SignInResponse } from '../models/interfaces/sign-in-response.interface';
 
 @Injectable({
   providedIn: 'root',

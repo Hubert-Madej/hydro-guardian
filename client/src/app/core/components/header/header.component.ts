@@ -1,6 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import gitInfo from '../../../../git-version.json';
+import { AuthUser } from '../../../auth/models/auth-user.model';
+import { AuthUserRoles } from '../../../auth/models/enums/auth-user-roles.enum';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +10,11 @@ import gitInfo from '../../../../git-version.json';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @Input() authUser: AuthUser;
   @Output() signOut = new EventEmitter<void>();
 
   items: MenuItem[] | undefined;
   gitInfo = gitInfo;
-
-  constructor() {}
 
   ngOnInit() {
     this.items = [
@@ -28,7 +29,12 @@ export class HeaderComponent implements OnInit {
         ],
       },
       {
-        label: 'Quit',
+        label: 'Users Management',
+        icon: 'pi pi-user',
+        visible: this.authUser.role === AuthUserRoles.ADMIN,
+      },
+      {
+        label: 'Sign out',
         icon: 'pi pi-fw pi-power-off',
         command: () => this.signOut.emit(),
       },

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthFacade } from '../../services/auth.facade';
-import { LoginFormPayload } from '../../models/login-form-payload.interface';
+import { LoginFormPayload } from '../../models/interfaces/login-form-payload.interface';
 
 @Component({
   selector: 'app-login-container',

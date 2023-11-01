@@ -7,7 +7,9 @@ import { AuthFacade } from '../../../auth/services/auth.facade';
   styleUrls: ['./header-container.component.scss'],
 })
 export class HeaderContainerComponent {
-  constructor(private authFacade: AuthFacade) {}
+  authUser$ = this.authFacade.selectAuthUser$();
+
+  constructor(private readonly authFacade: AuthFacade) {}
 
   onSignOut(): void {
     this.authFacade.signOut();

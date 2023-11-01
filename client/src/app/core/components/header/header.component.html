@@ -1,1 +1,5 @@
-<p-menubar [model]="items"> Current App Revision: {{ gitInfo['hash'] }} </p-menubar>
+<p-menubar [model]="items">
+  <div class="right-side-navbar">
+    <p>Current App Revision: {{ gitInfo['hash'] }}</p>
+  </div>
+</p-menubar>

@@ -27,6 +27,7 @@
     "@nestjs/jwt": "^10.1.1",
     "@nestjs/passport": "^10.0.2",
     "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/swagger": "^7.1.14",
     "amazon-cognito-identity-js": "^6.3.6",
     "cache-manager": "^5.2.4",
     "cache-manager-redis-store": "^2.0.0",
