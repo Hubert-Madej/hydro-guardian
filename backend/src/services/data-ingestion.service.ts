@@ -8,8 +8,8 @@ export class DataIngestionService {
     routingKey: 'hg_data_route',
     queue: 'hg_data_route_queue',
   })
-  public async pubSubHandler(msg: {}) {
+  public async sensorDataSourceHandler(payload: any) {
     // @TODO Insert data into influx
-    console.log(msg);
+    console.log(payload);
   }
 }
