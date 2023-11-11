@@ -3,6 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
 import { IS_PUBLIC_KEY } from '../decorators/public.decorator';
+import { isRabbitContext } from '@golevelup/nestjs-rabbitmq';
 
 @Injectable()
 export default class JwtAuthenticationGuard extends AuthGuard('jwt') {
@@ -18,7 +19,7 @@ export default class JwtAuthenticationGuard extends AuthGuard('jwt') {
       context.getClass(),
     ]);
 
-    if (isPublic) {
+    if (isPublic || isRabbitContext(context)) {
       return true;
     }
 
