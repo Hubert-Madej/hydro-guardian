@@ -6,6 +6,10 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "typeorm:migration:run": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run -d src/config/database/type-orm-pg.config",
+    "typeorm:migration:revert": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:revert -d src/config/database/type-orm-pg.config",
+    "typeorm:migration:generate": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate -d src/config/database/type-orm-pg.config.ts  ./src/migrations/",
+    "typeorm:seed": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm-extension/dist/cli/index.js seed -d src/config/database/type-orm-pg.config",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -30,6 +34,7 @@
     "@nestjs/passport": "^10.0.2",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.1.14",
+    "@nestjs/typeorm": "^10.0.1",
     "amazon-cognito-identity-js": "^6.3.6",
     "amqp-connection-manager": "^4.1.14",
     "amqplib": "^0.10.3",
@@ -37,11 +42,15 @@
     "cache-manager-redis-store": "^2.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "dotenv": "^16.3.1",
     "jwks-rsa": "^3.1.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
+    "pg": "^8.11.3",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.17",
+    "typeorm-extension": "^3.1.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
