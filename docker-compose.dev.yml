@@ -12,6 +12,21 @@ services:
       - ${POSTGRES_PORT}:5432
     volumes:
       - db_data:/var/lib/postgresql/data
+
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    networks:
+      - default
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+      - influxdb_config:/etc/influxdb2
+
   redis:
     container_name: hydro-guardian-redis
     image: redis
@@ -37,6 +52,8 @@ services:
 
 volumes:
   db_data:
+  influxdb_data:
+  influxdb_config:
   redis:
     driver: local
 

@@ -3,7 +3,6 @@ import { AuthModule } from './auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { CacheModule } from '@nestjs/cache-manager';
 import { DataIngestionModule } from './data-ingestion.module';
-import { DataIngestionService } from '../services/data-ingestion.service';
 import { DatabaseModule } from './database.module';
 import * as redisStore from 'cache-manager-redis-store';
 import * as process from 'process';
@@ -22,6 +21,5 @@ import * as process from 'process';
     DataIngestionModule,
     DatabaseModule,
   ],
-  providers: [DataIngestionService],
 })
 export class AppModule {}
