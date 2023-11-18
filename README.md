@@ -8,9 +8,9 @@
   </a>
 </p>
 
-HydroGuardian is an application that enables monitoring and control of water quality using a mini water quality monitoring station. The application allows for remote monitoring of measurement results, data analysis, and station management.
-
-
+HydroGuardian is an application that enables monitoring and control of water quality using a mini water quality
+monitoring station. The application allows for remote monitoring of measurement results, data analysis, and station
+management.
 
 ## Requirements
 
@@ -26,7 +26,7 @@ Before getting started with the project, make sure you have the following softwa
    ```bash
    git clone https://github.com/your-username/hydro-guardian.git
    ```
-   
+
    ```bash
    cd hydro-guardian/
    ```
@@ -42,7 +42,7 @@ Before getting started with the project, make sure you have the following softwa
    cd ../client
    npm i
    ```
-   
+
 ## Running
 
 To run the project, use the following command:
@@ -68,17 +68,38 @@ To configure the HydroGuardian application and connect it to the water quality m
 2. Create `.env` file based on .env.example and adjust parameters such as the MQTT server address and InfluxDB database.
 3. Install HydroGuardian Firmware on the target device and configure it according to the project's requirements.
 
+# ORM
+
+To manage ORM structure of the project use following commands:
+
+   ```bash
+   npm run typeorm # General purpose TypeORM CLI
+   ```
+
+   ```bash
+   npm run typeorm:migration:run # Run all pending migrations
+   ```
+
+   ```bash
+   npm run typeorm:migration:revert # Revert latest database migration
+   ```
+
+   ```bash
+   npm run typeorm:seed # Seed all static values
+   ```
+
 ## Code development requirements
+
 #### Backend
 
 - You should avoid using 'any'. Every property, argument etc. should have a valid type.
 - Use try / catch mechanism for external HTTP requests and asynchronous communication.
-- Before every commit run: 
-   - `npm run lint`
-   - `npm run format`
+- Before every commit run:
+    - `npm run lint`
+    - `npm run format`
 - Every new functionality that provides:
-  - Endpoint,
-  - Dto, Should be documented with Swagger Properties (Example in Auth Module).
+    - Endpoint,
+    - Dto, Should be documented with Swagger Properties (Example in Auth Module).
 - (NOT READY) Every new functionality that provides new logic should have unit test.
 
 ## Technologies Used
