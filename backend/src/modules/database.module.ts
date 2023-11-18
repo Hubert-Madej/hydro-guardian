@@ -19,7 +19,7 @@ import * as path from 'path';
         entities: [path.join(__dirname, '../entities/*.entity{.ts,.js}')],
         migrations: [path.join(__dirname, '../migrations/*.{.ts,.js}')],
         cli: {
-          migrationsDir: 'src/migrations',
+          migrationsDir: [__dirname + '../migrations/**/*.ts'],
         },
         useTransaction: true,
         autoLoadEntities: true,
