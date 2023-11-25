@@ -1,5 +1,28 @@
-<p-menubar [model]="items">
-  <div class="right-side-navbar">
-    <p>Current App Revision: {{ gitInfo['hash'] }}</p>
+<div [class.active]="showMenu" class="navigation">
+  <div (click)="toggleMenu()" class="menuToggle"></div>
+  <div class="navigation-container">
+    <ul>
+      <li class="list" routerLinkActive="active">
+        <a routerLink="/" style="--clr: #44bba4">
+          <span class="icon"><i class="bi bi-device-ssd"></i></span>
+          <span class="text">Devices</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="/account" style="--clr: #44bba4">
+          <span class="icon"><i class="bi bi-person"></i></span>
+          <span class="text">Account</span>
+        </a>
+      </li>
+      <li class="list">
+        <a (click)="signOut()" style="--clr: #44bba4">
+          <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
+          <span class="text">Logout</span>
+        </a>
+      </li>
+    </ul>
   </div>
-</p-menubar>
+  <div class="commit-hash">
+    <span>#{{ gitInfo['hash'] }}</span>
+  </div>
+</div>

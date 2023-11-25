@@ -1,5 +1,217 @@
-.right-side-navbar {
+@import '../../../../styles/colors';
+
+.commit-hash {
   display: flex;
-  flex-direction: row;
-  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 8px 0;
+}
+
+.navigation.active {
+  width: 250px;
+}
+
+.navigation.active .menuToggle::before {
+  transform: translateY(0) rotate(45deg);
+}
+
+.navigation.active .menuToggle::after {
+  transform: translateY(0) rotate(-45deg);
+  box-shadow: 0 0 0 #333;
+}
+
+.navigation {
+  position: fixed;
+  inset: 40px 0 40px 20px;
+  width: 75px;
+  background: #e7e5df;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-sizing: unset;
+  transition: 0.5s;
+}
+
+.navigation-container {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menuToggle {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  padding: 23px 23px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  justify-content: flex-start;
+  align-content: center;
+  cursor: pointer;
+}
+
+.menuToggle::before {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: #333;
+  transform: translateY(-8px);
+  transition: 0.5s;
+}
+
+.menuToggle::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: #333;
+  box-shadow: 0 -8px 0 #333;
+  transform: translateY(8px);
+  transition: 0.5s;
+}
+
+.navigation-container ul {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.navigation-container ul li {
+  list-style: none;
+  position: relative;
+  width: 100%;
+  height: 76px;
+  border-radius: 12px;
+  border: 8px solid transparent;
+  transition: 0.5s;
+}
+
+.navigation-container ul li.active {
+  transform: translateX(30px);
+  background: $platinium-light;
+}
+
+.navigation-container ul li::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  top: -28px;
+  right: -10px;
+  transform: scale(0);
+  border-bottom-right-radius: 20px;
+  box-shadow: 6px 5px 0 5px $platinium-light;
+  transform-origin: bottom right;
+  transition: 0.5s;
+}
+
+.navigation-container ul li.active::before {
+  right: 22px;
+  transform: scale(1);
+}
+
+.navigation-container ul li::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  bottom: -28px;
+  right: -10px;
+  transform: scale(0);
+  border-top-right-radius: 20px;
+  box-shadow: 6px -3px 0 3px $platinium-light;
+  transform-origin: bottom right;
+  transition: 0.5s;
+}
+
+.navigation-container ul li.active::after {
+  right: 22px;
+  transform: scale(1);
+}
+
+.navigation-container ul li a {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  text-decoration: none !important;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.navigation-container ul li a .icon {
+  position: relative;
+  min-width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  font-size: 1.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 6px solid transparent;
+  transition: 0.5s;
+  color: #393e41;
+}
+
+.navigation-container ul li.active a .icon {
+  color: #fff;
+  background: $keppel;
+}
+
+.navigation-container ul li a .icon::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $keppel;
+  filter: blur(8px);
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.navigation-container ul li.active a .icon::before {
+  opacity: 0.25;
+}
+
+.navigation-container ul li a .icon::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: -60px;
+  width: 30px;
+  height: 30px;
+  background: $keppel;
+  border: 8px solid $platinium-light;
+  border-radius: 50%;
+}
+
+.navigation-container ul li a .text {
+  position: relative;
+  padding: 0 15px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+}
+
+.navigation.active .navigation-container ul li a .text {
+  visibility: visible;
+  opacity: 1;
 }

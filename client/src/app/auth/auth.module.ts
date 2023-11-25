@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginContainerComponent } from './containers/login-container/login-container.component';
 import { LoginComponent } from './components/login/login.component';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
@@ -18,8 +16,6 @@ import { AuthRoutingModule } from './auth-routing.module';
   exports: [LoginContainerComponent],
   imports: [
     CommonModule,
-    InputTextModule,
-    ButtonModule,
     ReactiveFormsModule,
     HttpClientModule,
     AuthRoutingModule,
