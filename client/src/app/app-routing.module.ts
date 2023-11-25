@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LoginContainerComponent } from './auth/containers/login-container/login-container.component';
-import { UnauthenticatedGuard } from './auth/guards/unauthenticated.guard';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthenticatedGuard } from './auth/guards/authenticated.guard';
 import { DashboardContainerComponent } from './core/containers/dashboard-container/dashboard-container.component';
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: LoginContainerComponent,
-    canActivate: [UnauthenticatedGuard],
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: '',
@@ -19,7 +16,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

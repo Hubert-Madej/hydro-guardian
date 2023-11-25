@@ -17,12 +17,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { AuthRoutingModule } from './auth/auth-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    AuthRoutingModule,
     AppRoutingModule,
+    BrowserModule,
     ButtonModule,
     TableModule,
     MenubarModule,

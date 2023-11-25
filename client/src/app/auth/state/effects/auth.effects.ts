@@ -53,7 +53,7 @@ export class AuthEffects {
   logout$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.logOut),
-      tap(() => this.router.navigate(['/login'])),
+      tap(() => this.router.navigate(['/auth/login'])),
       switchMap(() => {
         this.cookieService.delete(ACCESS_TOKEN_KEY, '/', location.hostname);
 

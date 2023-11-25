@@ -11,6 +11,7 @@ import { StateKey } from '../shared/enums/state-key.enum';
 import { authReducer } from './state/reducers/auth.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './state/effects/auth.effects';
+import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule({
   declarations: [LoginContainerComponent, LoginComponent],
@@ -21,6 +22,7 @@ import { AuthEffects } from './state/effects/auth.effects';
     ButtonModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AuthRoutingModule,
     StoreModule.forFeature(StateKey.Auth, authReducer),
     EffectsModule.forFeature([AuthEffects]),
   ],
