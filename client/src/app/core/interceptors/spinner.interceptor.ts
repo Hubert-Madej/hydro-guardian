@@ -5,7 +5,7 @@ import { CoreFacade } from '../services/core.facade';
 
 @Injectable()
 export class SpinnerInterceptor implements HttpInterceptor {
-  constructor(private coreFacade: CoreFacade) {}
+  constructor(private readonly coreFacade: CoreFacade) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.coreFacade.addPendingRequest();

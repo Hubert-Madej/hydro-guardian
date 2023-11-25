@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthFacade } from '../../../auth/services/auth.facade';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-header-container',
@@ -7,11 +7,11 @@ import { AuthFacade } from '../../../auth/services/auth.facade';
   styleUrls: ['./header-container.component.scss'],
 })
 export class HeaderContainerComponent {
-  authUser$ = this.authFacade.selectAuthUser$();
+  authUser$ = this.authService.getAuthUser();
 
-  constructor(private readonly authFacade: AuthFacade) {}
+  constructor(private readonly authService: AuthService) {}
 
   onSignOut(): void {
-    this.authFacade.signOut();
+    this.authService.logout();
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthFacade } from '../../services/auth.facade';
 import { LoginFormPayload } from '../../models/interfaces/login-form-payload.interface';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login-container',
@@ -8,9 +8,9 @@ import { LoginFormPayload } from '../../models/interfaces/login-form-payload.int
   styleUrls: ['./login-container.component.scss'],
 })
 export class LoginContainerComponent {
-  constructor(private readonly authFacade: AuthFacade) {}
+  constructor(private readonly authService: AuthService) {}
 
   onSignIn(loginFormPayload: LoginFormPayload): void {
-    this.authFacade.signIn(loginFormPayload);
+    this.authService.login(loginFormPayload);
   }
 }
