@@ -1,7 +1,7 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthApiService } from '../../services/auth-api.service';
 import { authActions } from '../actions/auth.actions';
-import { debounceTime, map, switchMap, tap } from 'rxjs';
+import { debounceTime, map, of, switchMap, tap } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { SignInResponse } from '../../models/interfaces/sign-in-response.interface';
 import { AuthService } from '../../services/auth.service';
@@ -13,8 +13,8 @@ import { ACCESS_TOKEN_KEY } from '../../../shared/config/application';
   providedIn: 'root',
 })
 export class AuthEffects {
-  login$ = createEffect(() =>
-    this.actions$.pipe(
+  login$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(authActions.login),
       switchMap((action) =>
         this.authApiService.signIn(action.loginFormPayload).pipe(
@@ -27,18 +27,18 @@ export class AuthEffects {
           }),
         ),
       ),
-    ),
-  );
+    );
+  });
 
-  autoLogin$ = createEffect(() =>
-    this.actions$.pipe(
+  autoLogin$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(authActions.autoLogin),
       map((action) => authActions.loginSuccess({ signInResponse: { jwtToken: action.token } })),
-    ),
-  );
+    );
+  });
 
-  loadAuthUser$ = createEffect(() =>
-    this.actions$.pipe(
+  loadAuthUser$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(authActions.loginSuccess),
       debounceTime(100),
       switchMap(() => {
@@ -47,20 +47,20 @@ export class AuthEffects {
           map((authUser) => authActions.loadAuthUserSuccess({ authUser })),
         );
       }),
-    ),
-  );
+    );
+  });
 
-  logout$ = createEffect(() =>
-    this.actions$.pipe(
+  logout$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(authActions.logOut),
       tap(() => this.router.navigate(['/auth/login'])),
       switchMap(() => {
         this.cookieService.delete(ACCESS_TOKEN_KEY, '/', location.hostname);
 
-        return this.authApiService.signOut().pipe(map(() => authActions.clearAuthState()));
+        return of(authActions.clearAuthState());
       }),
-    ),
-  );
+    );
+  });
 
   constructor(
     private readonly actions$: Actions,

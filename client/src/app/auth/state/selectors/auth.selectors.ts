@@ -2,10 +2,10 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { StateKey } from '../../../shared/enums/state-key.enum';
 import { AuthState } from '../reducers/auth.reducers';
 
-const getAuthState = createFeatureSelector<AuthState>(StateKey.Auth);
+const selectAuthState = createFeatureSelector<AuthState>(StateKey.Auth);
 
-export const getAuthToken = createSelector(getAuthState, (state) => state.token);
+export const selectAuthToken = createSelector(selectAuthState, (state) => state.token);
 
-export const getAuthUser = createSelector(getAuthState, (state) => state.authUser);
+export const selectAuthUser = createSelector(selectAuthState, (state) => state.authUser);
 
-export const getTokenExpirationDate = createSelector(getAuthState, (state) => state.tokenExpirationDate);
+export const selectTokenExpirationDate = createSelector(selectAuthState, (state) => state.tokenExpirationDate);
