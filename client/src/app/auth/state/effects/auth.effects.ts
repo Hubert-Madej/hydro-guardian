@@ -7,13 +7,12 @@ import { SignInResponse } from '../../models/interfaces/sign-in-response.interfa
 import { AuthService } from '../../services/auth.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ACCESS_TOKEN_KEY } from '../../../shared/config/application';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthEffects {
-  cookieTokenKey = 'access_token';
-
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.login),
@@ -22,7 +21,7 @@ export class AuthEffects {
           map((signInResponse: SignInResponse) => {
             const { jwtToken } = signInResponse;
             const expires = this.authService.getExpirationDate(jwtToken);
-            this.cookieService.set(this.cookieTokenKey, jwtToken, expires, '/', location.hostname);
+            this.cookieService.set(ACCESS_TOKEN_KEY, jwtToken, expires, '/', location.hostname);
 
             return authActions.loginSuccess({ signInResponse });
           }),
@@ -56,7 +55,7 @@ export class AuthEffects {
       ofType(authActions.logOut),
       tap(() => this.router.navigate(['/login'])),
       switchMap(() => {
-        this.cookieService.delete(this.cookieTokenKey, '/', location.hostname);
+        this.cookieService.delete(ACCESS_TOKEN_KEY, '/', location.hostname);
 
         return this.authApiService.signOut().pipe(map(() => authActions.clearAuthState()));
       }),

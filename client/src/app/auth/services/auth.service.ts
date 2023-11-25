@@ -8,13 +8,12 @@ import { map, Observable, take } from 'rxjs';
 import { AuthUser } from '../models/auth-user.model';
 import { getAuthToken, getAuthUser } from '../state/selectors/auth.selectors';
 import { CookieService } from 'ngx-cookie-service';
+import { ACCESS_TOKEN_KEY } from '../../shared/config/application';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  cookieTokenKey = 'access_token';
-
   constructor(
     private readonly store: Store,
     private readonly cookieService: CookieService,
@@ -72,6 +71,6 @@ export class AuthService {
   }
 
   #retrieveToken(): string {
-    return this.cookieService.get(this.cookieTokenKey);
+    return this.cookieService.get(ACCESS_TOKEN_KEY);
   }
 }
