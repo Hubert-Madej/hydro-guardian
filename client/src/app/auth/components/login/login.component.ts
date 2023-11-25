@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginFormPayload } from '../../models/interfaces/login-form-payload.interface';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {LoginFormPayload} from '../../models/interfaces/login-form-payload.interface';
 
 @Component({
   selector: 'app-login',
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  submit(): void {
+  submitSignInForm(): void {
     if (this.signInForm.valid) {
       this.signIn.emit(this.signInForm.getRawValue() as LoginFormPayload);
     } else {
