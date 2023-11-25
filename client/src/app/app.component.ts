@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   authUser$ = this.authService.getAuthUser();
 
   constructor(
-    private coreFacade: CoreFacade,
+    private readonly coreFacade: CoreFacade,
     private readonly authService: AuthService,
   ) {}
 
