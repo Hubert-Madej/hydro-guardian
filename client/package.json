@@ -27,7 +27,7 @@
     "git-describe": "^4.1.1",
     "jwt-decode": "^4.0.0",
     "ngx-cookie-service": "^16.1.0",
-    "ngx-spinner": "^14.0.0",
+    "ngx-spinner": "^16.0.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
