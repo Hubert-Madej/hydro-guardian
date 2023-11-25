@@ -9,28 +9,53 @@ import { LoginFormPayload } from '../../models/interfaces/login-form-payload.int
 })
 export class LoginComponent implements OnInit {
   @Output() signIn = new EventEmitter<LoginFormPayload>();
+  showLoginForm = true;
 
-  form: FormGroup<{
+  signInForm: FormGroup<{
     email: FormControl<string | null>;
     password: FormControl<string | null>;
   }>;
 
+  signUpForm: FormGroup<{
+    username: FormControl<string | null>;
+    password: FormControl<string | null>;
+    firstName: FormControl<string | null>;
+    lastName: FormControl<string | null>;
+    email: FormControl<string | null>;
+    activationCode: FormControl<string | null>;
+  }>;
+
   ngOnInit(): void {
-    this.createForm();
+    this.createForms();
   }
 
-  createForm(): void {
-    this.form = new FormGroup({
+  createForms(): void {
+    this.signInForm = new FormGroup({
       email: new FormControl<string | null>(null, Validators.required),
       password: new FormControl<string | null>(null, Validators.required),
+    });
+
+    this.signUpForm = new FormGroup({
+      username: new FormControl<string | null>(null, Validators.required),
+      password: new FormControl<string | null>(null, Validators.required),
+      firstName: new FormControl<string | null>(null, Validators.required),
+      lastName: new FormControl<string | null>(null, Validators.required),
+      email: new FormControl<string | null>(null, [Validators.required, Validators.email]),
+      activationCode: new FormControl<string | null>(null, Validators.required),
     });
   }
 
   submit(): void {
-    if (this.form.valid) {
-      this.signIn.emit(this.form.getRawValue() as LoginFormPayload);
+    if (this.signInForm.valid) {
+      this.signIn.emit(this.signInForm.getRawValue() as LoginFormPayload);
     } else {
-      this.form.markAllAsTouched();
+      this.signInForm.markAllAsTouched();
     }
+  }
+
+  toggleForm(): void {
+    this.showLoginForm = !this.showLoginForm;
+    this.signUpForm.reset();
+    this.signInForm.reset();
   }
 }

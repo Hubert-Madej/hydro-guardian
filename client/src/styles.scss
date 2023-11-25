@@ -13,3 +13,7 @@ body {
 .main-logo {
   object-fit: cover;
 }
+
+input.ng-invalid.ng-touched {
+  border: 1px solid #f4796b !important;
+}

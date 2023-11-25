@@ -1,26 +1,180 @@
-.hg-auth-login-form {
+@import '../../../../styles/colors';
+
+.full-container {
+  height: 100dvh;
   display: flex;
-  flex-direction: column;
-  gap: 32px;
-  box-shadow:
-    0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
-  padding: 16px;
-  border-radius: 8px;
-  width: 40%;
-  background: #f9fafb;
-  text-align: center;
   justify-content: center;
   align-items: center;
-  min-height: 450px;
 }
 
-.hg-auth-login-container {
+.container {
+  background: #fff;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  width: 892px;
+  min-height: 480px;
+}
+
+.container p {
+  font-size: 1.3rem;
+  line-height: 1.2rem;
+}
+
+.container button {
+  background: $saffon-light;
+  color: $onyx-dark;
+  font-size: 0.75rem;
+  padding: 10px 45px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.control-button:hover {
+  cursor: pointer;
+}
+
+.container button.hidden {
+  background-color: transparent;
+  color: $white;
+  border-color: $white;
+}
+
+.container form {
+  background: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  height: 100%;
+}
+
+.form-group {
+  width: 100% !important;
+}
+
+.container input {
+  background: #eee;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  width: 100%;
+  outline: none;
+}
+
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-in {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.container.active .sign-in {
+  transform: translateX(100%);
+}
+
+.sign-up {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+
+.container.active .sign-up {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: move 0.6s;
+}
+
+@keyframes move {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+.toggle-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: all 0.6s ease-in-out;
+  z-index: 1000;
+  border-radius: 50px 0 0 50px;
+}
+
+.container.active .toggle-container {
+  transform: translateX(-100%);
+  border-radius: 0 50px 50px 0;
+}
+
+.toggle {
+  background: linear-gradient(to right, $saffon, $saffon-light);
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: all 0.6s ease-in-out;
+}
+
+.container.active .toggle {
+  transform: translateX(50%);
+}
+
+.toggle-panel {
+  position: absolute;
+  width: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  flex: 1;
-  margin: 0 auto;
-  height: 100vh;
+  justify-content: center;
+  padding: 0 30px;
+  text-align: center;
+  top: 0;
+  transform: translateX(0);
+  transition: all 0.6s ease-in-out;
+}
+
+.toggle-left {
+  transform: translateX(-200%);
+}
+
+.container.active .toggle-left {
+  transform: translateX(0);
+}
+
+.toggle-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.container.active .toggle-right {
+  transform: translateX(200%);
 }

@@ -1,12 +1,58 @@
-<div class="hg-auth-login-container">
-  <form [formGroup]="form" class="hg-auth-login-form">
-    <img class="main-logo" height="128" src="assets/images/HydroGuardian-Dark.png" width="512" />
-    <div class="form-group">
-      <input class="form-control" formControlName="email" placeholder="Username" />
+<div class="full-container">
+  <img class="main-logo m-0 p-" height="128" src="assets/images/HydroGuardian-Dark.png" width="512" />
+  <div [class.active]="!showLoginForm" class="container">
+    <div class="form-container sign-up">
+      <form [formGroup]="signUpForm">
+        <h1>Sign Up</h1>
+        <div class="form-group">
+          <input class="form-control" formControlName="username" placeholder="Username" />
+        </div>
+        <div class="form-group">
+          <input class="form-control" formControlName="password" placeholder="Password" type="password" />
+        </div>
+        <div class="form-group">
+          <input class="form-control" formControlName="firstName" placeholder="First Name" />
+        </div>
+        <div class="form-group">
+          <input class="form-control" formControlName="lastName" placeholder="Last Name" />
+        </div>
+        <div class="form-group">
+          <input class="form-control" formControlName="email" placeholder="Email" />
+        </div>
+        <div class="form-group">
+          <input class="form-control" formControlName="activationCode" placeholder="Activation Code" />
+        </div>
+        <button (click)="submit()" [disabled]="signUpForm.invalid" class="btn btn-primary control-button">
+          Sign up
+        </button>
+      </form>
     </div>
-    <div class="form-group">
-      <input class="form-control" formControlName="password" placeholder="Password" type="password" />
+    <div class="form-container sign-in">
+      <form [formGroup]="signInForm">
+        <h1>Sign In</h1>
+        <div class="form-group">
+          <input class="form-control" formControlName="email" placeholder="Email" />
+        </div>
+        <div class="form-group">
+          <input class="form-control" formControlName="password" placeholder="Password" type="password" />
+        </div>
+        <button (click)="submit()" [disabled]="signInForm.invalid" class="btn btn-primary control-button">
+          Sign in
+        </button>
+      </form>
     </div>
-    <button (click)="submit()" class="btn btn-primary">Sign in</button>
-  </form>
+    <div class="toggle-container">
+      <div class="toggle">
+        <div class="toggle-panel toggle-right">
+          <p>Enter your auth details to access the system.</p>
+          <button (click)="toggleForm()" class="hidden control-button">Sign Up</button>
+        </div>
+        <div class="toggle-panel toggle-left">
+          <h1>First time here?</h1>
+          <p>In order to create account in the system you need to provide invitation code created by system admin.</p>
+          <button (click)="toggleForm()" class="hidden control-button">Sign In</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

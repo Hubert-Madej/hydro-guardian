@@ -149,6 +149,11 @@
   text-decoration: none !important;
   z-index: 1000;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.navigation-container ul li a:hover {
+  cursor: pointer;
 }
 
 .navigation-container ul li a .icon {

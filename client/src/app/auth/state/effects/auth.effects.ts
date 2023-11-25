@@ -1,7 +1,7 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthApiService } from '../../services/auth-api.service';
 import { authActions } from '../actions/auth.actions';
-import { debounceTime, map, switchMap, tap } from 'rxjs';
+import { debounceTime, map, of, switchMap, tap } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { SignInResponse } from '../../models/interfaces/sign-in-response.interface';
 import { AuthService } from '../../services/auth.service';
@@ -57,7 +57,7 @@ export class AuthEffects {
       switchMap(() => {
         this.cookieService.delete(ACCESS_TOKEN_KEY, '/', location.hostname);
 
-        return this.authApiService.signOut().pipe(map(() => authActions.clearAuthState()));
+        return of(authActions.clearAuthState());
       }),
     ),
   );
