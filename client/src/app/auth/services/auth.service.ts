@@ -6,7 +6,7 @@ import { LoginFormPayload } from '../models/interfaces/login-form-payload.interf
 import { authActions } from '../state/actions/auth.actions';
 import { map, Observable, take } from 'rxjs';
 import { AuthUser } from '../models/auth-user.model';
-import { getAuthToken, getAuthUser } from '../state/selectors/auth.selectors';
+import { selectAuthToken, selectAuthUser } from '../state/selectors/auth.selectors';
 import { CookieService } from 'ngx-cookie-service';
 import { ACCESS_TOKEN_KEY } from '../../shared/config/application';
 
@@ -25,7 +25,7 @@ export class AuthService {
 
   autoLogin() {
     return this.store
-      .select(getAuthToken)
+      .select(selectAuthToken)
       .pipe(
         take(1),
         map((token) => {
@@ -50,11 +50,11 @@ export class AuthService {
   }
 
   getToken(): Observable<string | null> {
-    return this.store.select(getAuthToken);
+    return this.store.select(selectAuthToken);
   }
 
   getAuthUser(): Observable<AuthUser | null> {
-    return this.store.select(getAuthUser);
+    return this.store.select(selectAuthUser);
   }
 
   getExpirationDate(token: string) {

@@ -16,13 +16,13 @@ const initialState: AuthState = {
 
 export const authReducer = createReducer(
   initialState,
-  on(authActions.loginSuccess, (state, action) => {
+  on(authActions.loginSuccess, (state, action): AuthState => {
     return { ...state, token: action.signInResponse.jwtToken };
   }),
-  on(authActions.loadAuthUserSuccess, (state, action) => {
+  on(authActions.loadAuthUserSuccess, (state, action): AuthState => {
     return { ...state, authUser: action.authUser };
   }),
-  on(authActions.clearAuthState, () => {
+  on(authActions.clearAuthState, (): AuthState => {
     return { ...initialState };
   }),
 );

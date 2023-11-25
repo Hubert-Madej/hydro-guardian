@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import gitInfo from '../../../../git-version.json';
 import { AuthUser } from '../../../auth/models/auth-user.model';
 
@@ -7,21 +7,19 @@ import { AuthUser } from '../../../auth/models/auth-user.model';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input() authUser: AuthUser;
-  @Output() onSignOut = new EventEmitter<void>();
+  @Output() signOut = new EventEmitter<void>();
 
   showMenu = false;
 
   gitInfo = gitInfo;
 
-  ngOnInit() {}
-
   toggleMenu() {
     this.showMenu = !this.showMenu;
   }
 
-  signOut() {
-    this.onSignOut.emit();
+  signUserOut() {
+    this.signOut.emit();
   }
 }

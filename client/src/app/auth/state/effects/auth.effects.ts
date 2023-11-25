@@ -13,8 +13,8 @@ import { ACCESS_TOKEN_KEY } from '../../../shared/config/application';
   providedIn: 'root',
 })
 export class AuthEffects {
-  login$ = createEffect(() =>
-    this.actions$.pipe(
+  login$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(authActions.login),
       switchMap((action) =>
         this.authApiService.signIn(action.loginFormPayload).pipe(
@@ -27,18 +27,18 @@ export class AuthEffects {
           }),
         ),
       ),
-    ),
-  );
+    );
+  });
 
-  autoLogin$ = createEffect(() =>
-    this.actions$.pipe(
+  autoLogin$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(authActions.autoLogin),
       map((action) => authActions.loginSuccess({ signInResponse: { jwtToken: action.token } })),
-    ),
-  );
+    );
+  });
 
-  loadAuthUser$ = createEffect(() =>
-    this.actions$.pipe(
+  loadAuthUser$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(authActions.loginSuccess),
       debounceTime(100),
       switchMap(() => {
@@ -47,11 +47,11 @@ export class AuthEffects {
           map((authUser) => authActions.loadAuthUserSuccess({ authUser })),
         );
       }),
-    ),
-  );
+    );
+  });
 
-  logout$ = createEffect(() =>
-    this.actions$.pipe(
+  logout$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(authActions.logOut),
       tap(() => this.router.navigate(['/auth/login'])),
       switchMap(() => {
@@ -59,8 +59,8 @@ export class AuthEffects {
 
         return of(authActions.clearAuthState());
       }),
-    ),
-  );
+    );
+  });
 
   constructor(
     private readonly actions$: Actions,

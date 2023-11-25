@@ -1,6 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {LoginFormPayload} from '../../models/interfaces/login-form-payload.interface';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginFormPayload } from '../../models/interfaces/login-form-payload.interface';
 
 @Component({
   selector: 'app-login',
