@@ -7,39 +7,42 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthFacade } from '../services/auth.facade';
+import { map, Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UnauthenticatedGuard implements CanActivate, CanActivateChild {
   constructor(
-    private authFacade: AuthFacade,
-    private router: Router,
+    private readonly authService: AuthService,
+    private readonly router: Router,
   ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+    return this.isUnauthenticated();
   }
+
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+    return this.isUnauthenticated();
   }
 
-  isUnauthenticated(): boolean {
-    const token = this.authFacade.getToken();
-
-    if (token) {
-      this.router.navigate(['/']);
-      return false;
-    } else {
-      return true;
-    }
+  isUnauthenticated(): Observable<boolean> {
+    return this.authService.getAuthUser().pipe(
+      map((authUser) => {
+        if (authUser) {
+          this.router.navigate(['/']);
+          return false;
+        } else {
+          return true;
+        }
+      }),
+    );
   }
 }

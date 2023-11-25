@@ -15,6 +15,8 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +31,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     NgxSpinnerModule,
     BrowserAnimationsModule,
     ProgressSpinnerModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
   ],
   providers: [
     {

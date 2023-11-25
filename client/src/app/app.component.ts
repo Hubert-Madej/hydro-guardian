@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoreFacade } from './core/services/core.facade';
-import { AuthFacade } from './auth/services/auth.facade';
+import { AuthService } from './auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +9,15 @@ import { AuthFacade } from './auth/services/auth.facade';
 })
 export class AppComponent implements OnInit {
   title = 'Hydro Guardian';
-  authUser$ = this.authFacade.selectAuthUser$();
+  authUser$ = this.authService.getAuthUser();
 
   constructor(
     private coreFacade: CoreFacade,
-    private readonly authFacade: AuthFacade,
+    private readonly authService: AuthService,
   ) {}
 
   ngOnInit() {
     this.coreFacade.startLoadingSpinner();
+    this.authService.autoLogin();
   }
 }

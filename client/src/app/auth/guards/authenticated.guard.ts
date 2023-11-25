@@ -7,39 +7,42 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthFacade } from '../services/auth.facade';
+import { map, Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticatedGuard implements CanActivate, CanActivateChild {
   constructor(
-    private authFacade: AuthFacade,
-    private router: Router,
+    private readonly authService: AuthService,
+    private readonly router: Router,
   ) {}
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.isAuthenticated(route);
+    return this.isAuthenticated();
   }
 
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.isAuthenticated(childRoute);
+    return this.isAuthenticated();
   }
 
-  private isAuthenticated(next: ActivatedRouteSnapshot): boolean {
-    const token = this.authFacade.getToken();
-
-    if (token) {
-      return true;
-    } else {
-      this.router.navigate(['login']);
-      return false;
-    }
+  private isAuthenticated(): Observable<boolean> {
+    return this.authService.getAuthUser().pipe(
+      map((authUser) => {
+        if (authUser) {
+          return true;
+        } else {
+          this.router.navigate(['/login']);
+          return false;
+        }
+      }),
+    );
   }
 }
