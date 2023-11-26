@@ -1,1 +1,1 @@
-<app-header [authUser]="authUser$ | async" (signOut)="onSignOut()"></app-header>
+<app-header (signOut)="onSignOut()" [authUser]="authUser$ | async"></app-header>

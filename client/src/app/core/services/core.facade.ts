@@ -8,8 +8,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class CoreFacade {
   constructor(
-    private coreState: CoreState,
-    private ngxSpinnerService: NgxSpinnerService,
+    private readonly coreState: CoreState,
+    private readonly ngxSpinnerService: NgxSpinnerService,
   ) {}
 
   selectPendingRequestsCount$(): Observable<number> {

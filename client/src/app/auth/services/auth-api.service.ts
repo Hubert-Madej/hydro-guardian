@@ -9,9 +9,10 @@ import { SignInResponse } from '../models/interfaces/sign-in-response.interface'
 @Injectable({
   providedIn: 'root',
 })
-export class AuthApi {
+export class AuthApiService {
   readonly baseUrl = environment.apiUrl + '/auth';
-  constructor(private httpClient: HttpClient) {}
+
+  constructor(private readonly httpClient: HttpClient) {}
 
   signIn(loginFormPayload: LoginFormPayload): Observable<SignInResponse> {
     return this.httpClient.post<SignInResponse>(`${this.baseUrl}/sign-in`, loginFormPayload);
