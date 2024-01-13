@@ -1,0 +1,18 @@
+<ng-container *ngIf="eligibleAssets$ | async as eligibleAssets">
+  <div class="container p-4" style="background: white">
+    <div class="d-flex flex-row align-items-center justify-content-between">
+      <h2 class="p-4">Dashboard</h2>
+      <div class="d-flex flex-column gap-2">
+        <label>Select asset for report:</label>
+        <select [formControl]="selectedAsset" aria-label="Select asset for report" class="form-select">
+          <option selected></option>
+          <option *ngFor="let eligibleAsset of eligibleAssets" [value]="eligibleAsset.uuid">
+            {{ eligibleAsset.tag }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <hr/>
+    <app-asset-dataset-chart [assetReport]="assetReport$ | async"></app-asset-dataset-chart>
+  </div>
+</ng-container>

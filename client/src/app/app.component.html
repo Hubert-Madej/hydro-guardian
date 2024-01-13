@@ -1,6 +1,8 @@
-<app-header-container *ngIf="authUser$ | async"></app-header-container>
+<app-header-container *ngIf="authUser"></app-header-container>
 
-<router-outlet></router-outlet>
+<div [class.base-layout-container]="authUser">
+  <router-outlet></router-outlet>
+</div>
 
 <ngx-spinner bdColor="rgba(45, 45, 45, 0.97)" size="medium" type="ball-grid-beat">
   <div class="spinner-wrapper">

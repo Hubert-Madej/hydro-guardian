@@ -1,0 +1,43 @@
+<ng-container *ngIf="assetDevices$ | async as assetDevices">
+  <div class="container h-100">
+    <div class="d-flex flex-column align-items-center justify-content-between h-100 w-100">
+      <div *ngIf="assetDevices.metadata.itemsCount === 0; else assetDeviceList" class="asset-device-empty-list">
+        <h1>No devices found.</h1>
+      </div>
+      <ng-template #assetDeviceList>
+        <div class="h-100 w-100">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Device Name</th>
+                <th scope="col">Tag</th>
+                <th scope="col">Date of Registration</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let assetDevice of assetDevices.data">
+                <td>{{ assetDevice.name }}</td>
+                <td>{{ assetDevice.tag }}</td>
+                <td>{{ assetDevice.dateOfRegistration | date }}</td>
+                <td class="d-flex flex-row gap-4">
+                  <span class="pointer">Edit</span>
+                  <span class="pointer">Remove</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
+      <div></div>
+      <app-list-pagination
+        (goTo)="getAssetDeviceList($event)"
+        (next)="getAssetDeviceList($event + 1)"
+        (previous)="getAssetDeviceList($event - 1)"
+        *ngIf="assetDevices.metadata"
+        [current]="assetDevices.metadata.page"
+        [total]="assetDevices.metadata.pageCount"
+      ></app-list-pagination>
+    </div>
+  </div>
+</ng-container>

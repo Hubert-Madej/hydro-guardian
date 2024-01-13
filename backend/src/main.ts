@@ -7,6 +7,7 @@ const API_VERSION = '1.0';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
   app.enableCors();
   app.setGlobalPrefix('api/v1');
@@ -20,7 +21,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  app.useGlobalPipes(new ValidationPipe());
   await app.listen(3000);
 }
 

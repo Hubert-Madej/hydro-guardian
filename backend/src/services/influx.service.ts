@@ -20,16 +20,13 @@ export class InfluxService {
     const fluxWriter = this.getFluxWriter();
 
     let point = new Point(timeSeriesPoint.measurementName)
-      .tag(
-        'machine_tag',
-        `${timeSeriesPoint.tagName}\\${timeSeriesPoint.tagValue}`,
-      )
-      .timestamp(timeSeriesPoint.timestamp);
+      .tag(timeSeriesPoint.tagName, `${timeSeriesPoint.tagValue}`)
+      .timestamp(Date.now());
 
     for (const fieldKey of Object.keys(timeSeriesPoint.fields)) {
       // Currently use only fields with float values.
       if (this.isFloat(timeSeriesPoint.fields[fieldKey])) {
-        point.floatField('_value', +timeSeriesPoint.fields[fieldKey]);
+        point.floatField(fieldKey, +timeSeriesPoint.fields[fieldKey]);
       }
     }
 

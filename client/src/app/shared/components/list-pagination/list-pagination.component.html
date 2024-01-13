@@ -1,0 +1,41 @@
+<div class="hg-list-pagination">
+  <ul>
+    <li class="prev">
+      <button
+        (click)="onPrevious()"
+        [attr.aria-disabled]="current === 1"
+        [disabled]="current === 1"
+        aria-label="Go to Previous Page"
+      >
+        Prev
+      </button>
+    </li>
+    <li *ngFor="let page of pages; index as i">
+      <span
+        (click)="onGoTo(page)"
+        (keyup.enter)="onGoTo(page)"
+        *ngIf="page !== -1; else more"
+        [attr.aria-current]="page === current ? 'page' : null"
+        [attr.aria-label]="page === current ? 'Current Page, Page ' + page : 'Go to Page ' + page"
+        [class.active]="page === current"
+        class="page-number"
+        tabindex="0"
+      >
+        {{ page }}
+      </span>
+      <ng-template #more>
+        <span class="more"> ... </span>
+      </ng-template>
+    </li>
+    <li class="next">
+      <button
+        (click)="onNext()"
+        [attr.aria-disabled]="current === total"
+        [disabled]="current === total"
+        aria-label="Go to Next Page"
+      >
+        Next
+      </button>
+    </li>
+  </ul>
+</div>

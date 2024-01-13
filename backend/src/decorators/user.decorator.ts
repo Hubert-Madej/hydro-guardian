@@ -12,6 +12,7 @@ export const User = createParamDecorator(
     const cognitoRawUser = req.user as CognitoRawUser;
 
     return {
+      uuid: cognitoRawUser.sub,
       email: cognitoRawUser.email,
       emailVerified: cognitoRawUser.email_verified,
       familyName: cognitoRawUser.family_name,

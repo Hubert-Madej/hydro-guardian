@@ -1,0 +1,29 @@
+<div class="h-100 w-100">
+  <h1 *ngIf="!assetReport; else reportDetails" class="h-100 w-100 d-flex align-items-center justify-content-center">
+    No asset selected.
+  </h1>
+
+  <ng-template #reportDetails>
+    <div class="p-4">
+      <h4>Report generated for: {{ assetReport.assetDevice.name }}</h4>
+      <div>
+        <app-chart [chartOption]="chartOption"></app-chart>
+      </div>
+
+      <div class="p-4">
+        <h4>Asset location:</h4>
+        <app-map [latitude]="assetReport.assetDevice.latitude"
+                 [longitude]="assetReport.assetDevice.longitude"></app-map>
+      </div>
+
+      <div class="p-4">
+        <h4>Asset Details</h4>
+        <ul>
+          <li>Name: {{assetReport.assetDevice.name}}</li>
+          <li>Tag: {{assetReport.assetDevice.tag}}</li>
+          <li>Date of registration: {{assetReport.assetDevice.dateOfRegistration | date}}</li>
+        </ul>
+      </div>
+    </div>
+  </ng-template>
+</div>

@@ -17,3 +17,8 @@ body {
 input.ng-invalid.ng-touched {
   border: 1px solid #f4796b !important;
 }
+
+.base-layout-container {
+  padding: 40px 0 40px 170px;
+  height: 100dvh;
+}

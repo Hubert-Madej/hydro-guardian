@@ -1,0 +1,69 @@
+button,
+input[type='submit'],
+input[type='reset'] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+button[disabled] {
+  cursor: default;
+  color: #a8a8a8;
+}
+
+.hg-list-pagination {
+  ul {
+    position: relative;
+    background: #fff;
+    display: flex;
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.09);
+
+    li {
+      list-style: none;
+      line-height: 50px;
+      color: #777;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      margin: 0 5px;
+    }
+
+    .page-number {
+      border-radius: 50%;
+      font-weight: 600;
+      width: 50px;
+      height: 50px;
+      display: block;
+    }
+
+    .page-number.active {
+      background: #333;
+      color: #fff;
+    }
+
+    .page-number:not(.active):hover {
+      background: #777;
+      color: #fff;
+    }
+
+    li:first-child {
+      margin-right: 30px;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+
+    li:last-child {
+      margin-left: 30px;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+  }
+}

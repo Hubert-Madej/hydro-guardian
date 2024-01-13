@@ -69,9 +69,8 @@ export class MainDataIngestionController implements OnModuleInit {
         console.log('-------------------------------------');
     }
 
-    private logError(message: string, data: any): void {
+    private logError(message: string): void {
         this.log(message);
-        console.log(data);
     }
 
     private async handleMessage(rawPayload: any): Promise<void> {
@@ -96,7 +95,7 @@ export class MainDataIngestionController implements OnModuleInit {
     private async subscribeToMqttTopic(): Promise<boolean> {
         await this.client.subscribe({
             subscriptions: [
-                {qos: 1, topicFilter: 'hydro-guardian/data_ingestion/water_quality'},
+                {qos: 1, topicFilter: 'hydro-guardian/data_ingestion'},
             ],
         });
         return true;

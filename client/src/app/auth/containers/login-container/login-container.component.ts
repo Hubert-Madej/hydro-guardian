@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { LoginFormPayload } from '../../models/interfaces/login-form-payload.interface';
 import { AuthService } from '../../services/auth.service';
 
@@ -6,6 +6,7 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-login-container',
   templateUrl: './login-container.component.html',
   styleUrls: ['./login-container.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class LoginContainerComponent {
   constructor(private readonly authService: AuthService) {}
